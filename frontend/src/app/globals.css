@@ -1,0 +1,239 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+}
+
+@layer base {
+  :root {
+    --background: #f8fafc; /* Soft white/light grey */
+    --foreground: #0f172a;
+    
+    --card-bg: rgba(255, 255, 255, 0.6); /* Frosted glass Base */
+    --card-border: rgba(255, 255, 255, 0.8);
+    --card-shadow: 0 8px 32px -4px rgba(31, 38, 135, 0.05);
+
+    --primary: #0f172a; 
+    --primary-foreground: #ffffff;
+    
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+  }
+
+  .dark {
+    --background: #020617; /* Very dark blue/black */
+    --foreground: #f8fafc;
+    
+    --card-bg: rgba(15, 23, 42, 0.35); /* Dark Frosted glass */
+    --card-border: rgba(255, 255, 255, 0.08); /* Subtle light border */
+    --card-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5);
+
+    --primary: #3b82f6; /* Bright blue */
+    --primary-foreground: #ffffff;
+    
+    --success: #10b981;
+    --success-bg: rgba(16, 185, 129, 0.15);
+    --warning: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.15);
+    --danger: #ef4444;
+    --danger-bg: rgba(239, 68, 68, 0.15);
+
+    --muted: rgba(255,255,255, 0.03);
+    --muted-foreground: #94a3b8;
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(ellipse at 10% 0%, hsla(253,16%,47%,0.08) 0, transparent 40%),
+    radial-gradient(ellipse at 90% 10%, hsla(225,39%,50%,0.08) 0, transparent 40%),
+    radial-gradient(ellipse at 50% 90%, hsla(339,49%,40%,0.08) 0, transparent 40%);
+  background-attachment: fixed;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-image: 
+    radial-gradient(ellipse at 10% 0%, hsla(253,66%,47%,0.1) 0, transparent 40%),
+    radial-gradient(ellipse at 90% 10%, hsla(225,89%,50%,0.15) 0, transparent 40%),
+    radial-gradient(ellipse at 50% 90%, hsla(280,70%,40%,0.1) 0, transparent 40%);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-modal {
+  background: var(--card-bg);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Base tailwind elements */
+.glass-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.glass-table th {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.dark .glass-table th {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.glass-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.dark .glass-table td {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.glass-table tr:last-child td {
+  border-bottom: none;
+}
+
+.glass-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px 0 rgba(15, 23, 42, 0.2);
+}
+
+.dark .btn-primary {
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(0,0,0,0.03);
+}
+
+.dark .btn-secondary {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.dark .btn-secondary:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Badges */
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-in-stock {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.badge-low-stock {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.badge-active {
+  background-color: var(--success-bg);
+  color: var(--success);
+}
+
+.badge-pending {
+  background-color: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* Forms */
+.glass-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.2s;
+  color: var(--foreground);
+}
+
+.dark .glass-input {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.dark .glass-input:focus {
+  background: rgba(0,0,0,0.4);
+}

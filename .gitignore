@@ -1,0 +1,16 @@
+# Node
+node_modules/
+.next/
+out/
+build/
+
+# Python
+__pycache__/
+.venv/
+env/
+*.pyc
+.env
+
+# Misc
+.DS_Store
+.vscode/
