@@ -95,7 +95,7 @@ export default function ReportsPage() {
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 12}} dx={-10} tickFormatter={(val) => `$${val/1000}k`} />
                 <Tooltip 
                    contentStyle={{ borderRadius: '0.5rem', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                   formatter={(value: number) => [`$${value.toLocaleString()}`, 'Revenue']}
+                   formatter={(value: any) => [`$${Number(value).toLocaleString()}`, 'Revenue']}
                 />
                 <Line type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={4} dot={{r: 4, fill: '#3b82f6'}} activeDot={{r: 8}} />
               </LineChart>

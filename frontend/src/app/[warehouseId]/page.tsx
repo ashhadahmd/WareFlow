@@ -139,7 +139,7 @@ const isDark = mounted && resolvedTheme === 'dark';
                 <YAxis axisLine={false} tickLine={false} tick={{fill: '#64748b', fontSize: 10}} dx={-10} tickFormatter={(val) => `$${val/1000}k`} />
                 <Tooltip 
                    contentStyle={{ borderRadius: '0.5rem', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                   formatter={(value: number) => [`$${value.toLocaleString()}`, 'Revenue']}
+                   formatter={(value: any) => [`$${Number(value).toLocaleString()}`, 'Revenue']}
                 />
                 <Line type="monotone" dataKey="revenue" stroke={isDark ? "#ffffff" : "#0f172a"}  strokeWidth={3} dot={{r: 4, fill: '#0f172a'}} activeDot={{r: 6}} />
               </LineChart>
@@ -170,7 +170,7 @@ const isDark = mounted && resolvedTheme === 'dark';
                 </Pie>
                 <Tooltip 
                    contentStyle={{ borderRadius: '0.5rem', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                   formatter={(value: number) => [value, 'Items']}
+                   formatter={(value: any) => [value, 'Items']}
                 />
                 <Legend layout="horizontal" verticalAlign="bottom" align="center" iconType="circle" wrapperStyle={{fontSize: '10px'}}/>
               </PieChart>
