@@ -128,7 +128,7 @@ export default function InventoryPage() {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-foreground">Inventory</h1>
           <p className="text-zinc-500 dark:text-zinc-400 mt-1 text-sm">Manage your warehouse products and stock levels.</p>
         </div>
-        <button onClick={() => handleOpenModal()} className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto py-3 px-6 rounded-xl font-bold uppercase tracking-widest text-xs">
+        <button onClick={() => handleOpenModal()} className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto py-3 px-6 rounded-xl font-bold text-xs uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-95">
           <Plus size={18} /> Add Product
         </button>
       </div>
@@ -140,7 +140,7 @@ export default function InventoryPage() {
           <input
             type="text"
             placeholder="Search SKU or Name..."
-            className="glass-input !pl-10 w-full"
+            className="glass-input !pl-10 w-full placeholder:font-medium placeholder:uppercase placeholder:tracking-widest"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

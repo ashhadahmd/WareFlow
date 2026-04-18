@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
 import Cookies from 'js-cookie';
-import { 
-  Users, Shield, Loader2, UserPlus, Trash2, 
-  Edit2, X, AlertCircle, CheckCircle2, Copy 
+import {
+  Users, Shield, Loader2, UserPlus, Trash2,
+  Edit2, X, AlertCircle, CheckCircle2, Copy
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -70,7 +70,7 @@ export default function SettingsPage() {
         email: inviteEmail,
         role: inviteRole
       });
-      
+
       const link = `${window.location.origin}/invite/${res.token}`;
       setInviteLink(link);
       toast.success("Invitation generated!", { id: t });
@@ -118,7 +118,7 @@ export default function SettingsPage() {
   };
 
   const togglePermission = (permId: string) => {
-    setSelectedPerms(prev => 
+    setSelectedPerms(prev =>
       prev.includes(permId) ? prev.filter(p => p !== permId) : [...prev, permId]
     );
   };
@@ -137,23 +137,25 @@ export default function SettingsPage() {
 
       {/* 2. Tabs Responsive */}
       <div className="glass-panel p-1.5 flex gap-1 w-full sm:w-fit overflow-x-auto no-scrollbar">
-        <button 
-           onClick={() => setActiveTab('members')}
-           className={cn(
-             "flex-1 sm:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 whitespace-nowrap",
-             activeTab === 'members' ? 'bg-primary text-primary-foreground shadow-lg' : 'text-zinc-500 hover:text-zinc-900'
-           )}
+        <button
+          onClick={() => setActiveTab('members')}
+          className={cn(
+            "flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 whitespace-nowrap",
+            activeTab === 'members' ? 'bg-primary text-white shadow-md' : 'text-zinc-500 hover:text-white hover:bg-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white'
+          )}
         >
-          <Users size={16}/> Members
+          <Users size={16} /> Members
         </button>
-        <button 
-           onClick={() => setActiveTab('roles')}
-           className={cn(
-             "flex-1 sm:flex-none px-6 py-2 rounded-lg font-bold text-sm transition-all flex items-center justify-center gap-2 whitespace-nowrap",
-             activeTab === 'roles' ? 'bg-primary text-primary-foreground shadow-lg' : 'text-zinc-500 hover:text-zinc-900'
-           )}
+        <button
+          onClick={() => setActiveTab('roles')}
+          className={cn(
+            "flex-1 sm:flex-none px-6 py-2.5 rounded-lg hover:text-white font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 whitespace-nowrap",
+            activeTab === 'roles'
+              ? 'bg-primary text-white shadow-md'
+              : 'text-zinc-500 hover:text-white hover:bg-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-white'
+          )}
         >
-          <Shield size={16}/> Roles Profile
+          <Shield size={16} /> Roles Profile
         </button>
       </div>
 
@@ -169,16 +171,16 @@ export default function SettingsPage() {
         <div className="glass-panel overflow-hidden border border-border/50">
           <div className="p-4 sm:p-6 border-b border-border/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-muted/20">
             <h3 className="font-black uppercase tracking-widest text-xs text-zinc-500">Team Roster</h3>
-            <button 
-              onClick={() => setIsInviteOpen(true)} 
+            <button
+              onClick={() => setIsInviteOpen(true)}
               className="btn-primary text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 w-full sm:w-auto py-2.5 px-5"
             >
               <UserPlus size={16} /> Invite Member
             </button>
           </div>
-          
+
           {loading ? (
-             <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-primary" size={32} /></div>
+            <div className="p-20 flex justify-center"><Loader2 className="animate-spin text-primary" size={32} /></div>
           ) : (
             <>
               {/* Desktop Table View */}
@@ -212,11 +214,11 @@ export default function SettingsPage() {
                         </td>
                         <td className="px-6 py-4">
                           {member.role === 'Owner' || member.role === 'Admin' ? (
-                             <span className="text-[10px] font-black uppercase text-zinc-400">Full Access</span>
+                            <span className="text-[10px] font-black uppercase text-zinc-400">Full Access</span>
                           ) : (
                             <div className="flex flex-wrap gap-1 max-w-[200px]">
                               {member.permissions.length === 0 ? (
-                                 <span className="text-[10px] font-black text-zinc-400 uppercase">None</span>
+                                <span className="text-[10px] font-black text-zinc-400 uppercase">None</span>
                               ) : member.permissions.map((p: any) => (
                                 <span key={p.id} className="text-[9px] font-black uppercase bg-primary/5 text-primary px-1.5 py-0.5 rounded border border-primary/10">
                                   {p.name.split(':')[0]}
@@ -257,14 +259,14 @@ export default function SettingsPage() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border/30">
-                       <div className="space-y-1">
-                          <p className="text-[9px] font-black text-zinc-400 uppercase">Joined</p>
-                          <p className="text-[11px] font-bold">{new Date(member.joined_at).toLocaleDateString()}</p>
-                       </div>
-                       <div className="space-y-1">
-                          <p className="text-[9px] font-black text-zinc-400 uppercase">Status</p>
-                          <p className="text-[11px] font-bold text-emerald-500">Active</p>
-                       </div>
+                      <div className="space-y-1">
+                        <p className="text-[9px] font-black text-zinc-400 uppercase">Joined</p>
+                        <p className="text-[11px] font-bold">{new Date(member.joined_at).toLocaleDateString()}</p>
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-[9px] font-black text-zinc-400 uppercase">Status</p>
+                        <p className="text-[11px] font-bold text-emerald-500">Active</p>
+                      </div>
                     </div>
 
                     {member.role !== 'Owner' && (
@@ -289,7 +291,7 @@ export default function SettingsPage() {
               <h2 className="text-xl font-black uppercase tracking-tighter">Invite Member</h2>
               <button onClick={() => { setIsInviteOpen(false); setInviteLink(''); }} className="p-2 hover:bg-muted rounded-full transition-colors"><X size={24} /></button>
             </div>
-            
+
             {!inviteLink ? (
               <form onSubmit={handleInvite} className="p-6 space-y-6">
                 <div className="space-y-1.5">
@@ -309,25 +311,25 @@ export default function SettingsPage() {
                 </div>
               </form>
             ) : (
-               <div className="p-8 space-y-6 text-center animate-in slide-in-from-bottom-2">
-                 <div className="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto"><CheckCircle2 size={32} /></div>
-                 <div className="space-y-2">
-                    <h3 className="text-xl font-black uppercase tracking-tighter">Link Ready</h3>
-                    <p className="text-sm text-zinc-500">Share this link with your teammate to grant access.</p>
-                 </div>
-                 <div className="p-4 bg-muted/50 rounded-2xl border border-border/50 break-all text-xs font-mono text-zinc-600 text-left relative group">
-                   {inviteLink}
-                 </div>
-                 <button 
-                   onClick={() => {
-                     navigator.clipboard.writeText(inviteLink);
-                     toast.success("Link copied!");
-                   }}
-                   className="btn-primary w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-black uppercase tracking-widest text-xs"
-                 >
-                   <Copy size={16} /> Copy to Clipboard
-                 </button>
-               </div>
+              <div className="p-8 space-y-6 text-center animate-in slide-in-from-bottom-2">
+                <div className="w-16 h-16 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center mx-auto"><CheckCircle2 size={32} /></div>
+                <div className="space-y-2">
+                  <h3 className="text-xl font-black uppercase tracking-tighter">Link Ready</h3>
+                  <p className="text-sm text-zinc-500">Share this link with your teammate to grant access.</p>
+                </div>
+                <div className="p-4 bg-muted/50 rounded-2xl border border-border/50 break-all text-xs font-mono text-zinc-600 text-left relative group">
+                  {inviteLink}
+                </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(inviteLink);
+                    toast.success("Link copied!");
+                  }}
+                  className="btn-primary w-full py-4 rounded-2xl flex items-center justify-center gap-2 font-black uppercase tracking-widest text-xs"
+                >
+                  <Copy size={16} /> Copy to Clipboard
+                </button>
+              </div>
             )}
           </div>
         </div>
@@ -345,7 +347,7 @@ export default function SettingsPage() {
               <button onClick={() => setIsPermOpen(false)} className="p-2 hover:bg-muted rounded-full transition-colors"><X size={24} /></button>
             </div>
             <form onSubmit={savePermissions} className="p-6 space-y-6">
-              
+
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Account Type</label>
                 <select className="glass-input w-full bg-background" value={selectedRole} onChange={e => setSelectedRole(e.target.value)}>
@@ -359,16 +361,16 @@ export default function SettingsPage() {
                   <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Allowed Actions</label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-muted/20 p-4 rounded-2xl border border-border/30">
                     {AVAILABLE_PERMISSIONS.map(perm => (
-                       <label key={perm.id} className="flex items-center gap-3 cursor-pointer group p-2 rounded-xl hover:bg-background/50 transition-colors">
-                         <div className={cn(
-                           "w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all",
-                           selectedPerms.includes(perm.id) ? "bg-primary border-primary" : "bg-background border-border group-hover:border-primary"
-                         )}>
-                           {selectedPerms.includes(perm.id) && <CheckCircle2 size={12} className="text-primary-foreground" />}
-                         </div>
-                         <input type="checkbox" className="hidden" checked={selectedPerms.includes(perm.id)} onChange={() => togglePermission(perm.id)}/>
-                         <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 transition-colors">{perm.label}</span>
-                       </label>
+                      <label key={perm.id} className="flex items-center gap-3 cursor-pointer group p-2 rounded-xl hover:bg-background/50 transition-colors">
+                        <div className={cn(
+                          "w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all",
+                          selectedPerms.includes(perm.id) ? "bg-primary border-primary" : "bg-background border-border group-hover:border-primary"
+                        )}>
+                          {selectedPerms.includes(perm.id) && <CheckCircle2 size={12} className="text-primary-foreground" />}
+                        </div>
+                        <input type="checkbox" className="hidden" checked={selectedPerms.includes(perm.id)} onChange={() => togglePermission(perm.id)} />
+                        <span className="text-xs font-bold text-zinc-600 dark:text-zinc-400 group-hover:text-zinc-900 transition-colors">{perm.label}</span>
+                      </label>
                     ))}
                   </div>
                 </div>
