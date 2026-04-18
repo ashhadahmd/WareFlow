@@ -104,7 +104,7 @@ export default function OrdersPage() {
         </div>
         <button 
           onClick={() => { setNewOrder({...newOrder, order_type: activeTab}); setIsModalOpen(true); }} 
-          className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto py-3 px-6"
+          className="btn-primary flex items-center justify-center gap-2 w-full sm:w-auto py-3 px-6 rounded-xl font-bold text-xs uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-95"
         >
           <Plus size={18} /> Create Order
         </button>
@@ -115,8 +115,8 @@ export default function OrdersPage() {
         <button 
            onClick={() => setActiveTab('inbound')}
            className={cn(
-             "flex-1 sm:flex-none px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap text-sm",
-             activeTab === 'inbound' ? 'bg-primary text-white shadow' : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+             "flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 whitespace-nowrap",
+             activeTab === 'inbound' ? 'bg-primary text-white shadow-md' : 'text-zinc-500 hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800'
            )}
         >
           Inbound ({inboundCount})
@@ -124,8 +124,8 @@ export default function OrdersPage() {
         <button 
            onClick={() => setActiveTab('outbound')}
            className={cn(
-             "flex-1 sm:flex-none px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap text-sm",
-             activeTab === 'outbound' ? 'bg-primary text-white shadow' : 'text-gray-500 hover:text-gray-900 hover:bg-black/5'
+             "flex-1 sm:flex-none px-6 py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest transition-all flex items-center justify-center gap-2 whitespace-nowrap",
+             activeTab === 'outbound' ? 'bg-primary text-white shadow-md' : 'text-zinc-500 hover:bg-zinc-100 hover:text-white dark:hover:bg-zinc-800'
            )}
         >
           Outbound ({outboundCount})
