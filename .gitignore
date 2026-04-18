@@ -10,6 +10,7 @@ __pycache__/
 env/
 *.pyc
 .env
+uv.lock
 
 # Misc
 .DS_Store

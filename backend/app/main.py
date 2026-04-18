@@ -1,9 +1,7 @@
-import os
-from dotenv import load_dotenv
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.config import settings
 from app.database import engine, Base
 from app.routers import (
     auth_router,
@@ -14,14 +12,14 @@ from app.routers import (
     reports_router,
 )
 
-load_dotenv()
-
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="WareFlow API")
 
 # Configure CORS
-origins = os.getenv("ALLOWED_ORIGINS", "").split(",")
+origins = [
+    origin.strip() for origin in settings.ALLOWED_ORIGINS.split(",") if origin.strip()
+]
 
 app.add_middleware(
     CORSMiddleware,
